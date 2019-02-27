@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container user_card_list">
+
+            <h1>{{ title }}</h1>
+    <a href="{% url 'creditCard:add_card' %}"><input type="button" class="btn pull-right" value="+ Add Card"></a>
+    <table class="table table-striped">
+        <thead>
+            <th>NAME</th>
+            <th>Expiry Date</th>
+            <th>Type</th>
+            <th>CVV</th>
+            <th>Card Number</th>
+            <th>Belongs To</th>
+
+        </thead>
+        <tbody>
+            {% for data in dataSet %}
+                <tr>
+                    <td>{{ data.name_on_the_card }}</td>
+                    <td>{{ data.expiry_date }}</td>
+                    <td>{{ data.type }}</td>
+                    <td>{{ data.cvv }}</td>
+                    <td>{{ data.card_number }}</td>
+                    <td>{{ data.user.username }}</td>
+                    <td>
+                        <a href="{% url 'creditCard:update_card' pk=data.id %}"><input class="btn btn-primary" type="button" value="Edit"></a>
+                        <a href="{% url 'creditCard:delete_card' pk=data.id %}"><input class="btn btn-danger" type="button" value="Delete"></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

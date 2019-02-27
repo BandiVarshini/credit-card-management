@@ -1,0 +1,7 @@
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete {{ object.card_number }} belonging to {{ object.user.username }}</p>
+        <input type="submit" value="yes">
+    </form>
+</div>
